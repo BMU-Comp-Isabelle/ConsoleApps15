@@ -23,9 +23,12 @@ namespace ConsoleAppProject
             Console.WriteLine("BNU CO453 Applications Programming 2020-2021!");
             Console.WriteLine();
 
+            /// program cannot access DistanceCoverter
+            /// see https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs0122?f1url=%3FappId%3Droslyn%26k%3Dk(CS0122
             DistanceConverter converter = new DistanceConverter();
-            converter.Run();
-
+            /*
+            converter.ConvertMilesToFeet();
+            */
         }
     }
 }
