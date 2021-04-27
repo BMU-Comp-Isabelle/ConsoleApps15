@@ -1,4 +1,5 @@
 ﻿using ConsoleAppProject.App01;
+using ConsoleAppProject.App02;
 using ConsoleAppProject.App03;
 using ConsoleAppProject.Helpers;
 using System;
@@ -11,24 +12,40 @@ namespace ConsoleAppProject
     /// to start Apps 01 to 05 for CO453 CW1
     /// 
     /// This Project has been modified by:
-    /// Isabelle M Thorpe 14/04/2020
+    /// Isabelle Thorpe 14/04/2020
     /// </summary>
     public static class Program
     {
+        private static int choice;
         public static void Main(string[] args)
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Black;
-            
+            Console.ForegroundColor = ConsoleColor.White;
+
             Console.WriteLine("BNU CO453 Applications Programming 2020-2021!");
+            Console.WriteLine("Isabelle Thorpe");
             Console.WriteLine();
 
-            /// program cannot access DistanceCoverter
-            /// see https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs0122?f1url=%3FappId%3Droslyn%26k%3Dk(CS0122
-            DistanceConverter converter = new DistanceConverter();
-            /*
-            converter.ConvertMilesToFeet();
-            */
+            string[] choices = new string[]
+            {
+                "Distance Coverter",
+                "BMI Calculator"
+            };
+
+            ConsoleHelper.OutputTitle("Please select the application you wish to use ");
+            choice = ConsoleHelper.SelectChoice(choices);
+
+            if (choice == 1)
+            {
+                DistanceConverter converter = new DistanceConverter();
+                converter.Run();
+            }
+            else if (choice == 2)
+            {
+                BMI calculator = new BMI();
+                calculator.Run();
+            }
+            
         }
     }
 }
