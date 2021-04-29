@@ -41,6 +41,7 @@ namespace ConsoleAppProject.Helpers
         /// </summary>
         private static void DisplayChoices(string[] choices)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             int choiceNo = 0;
 
             foreach (string choice in choices)
@@ -58,6 +59,7 @@ namespace ConsoleAppProject.Helpers
         /// </summary>
         public static double InputNumber(string prompt)
         {
+            Console.ForegroundColor = ConsoleColor.White;
             double number = 0;
             bool isValid;
 
@@ -92,7 +94,7 @@ namespace ConsoleAppProject.Helpers
         /// The number returned can be cast as an (int/decimal)
         /// </summary>
         public static double InputNumber(string prompt, double min, double max)
-        {
+        { 
             bool isValid;
             double number;
 
@@ -129,6 +131,12 @@ namespace ConsoleAppProject.Helpers
             Console.WriteLine("");
 
             Console.ForegroundColor = ConsoleColor.Yellow;
+        }
+
+        public static void OutputYellow(string line)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($" {line}");
         }
 
         /// <summary>
