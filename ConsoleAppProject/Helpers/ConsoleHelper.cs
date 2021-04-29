@@ -103,7 +103,7 @@ namespace ConsoleAppProject.Helpers
                 if (number < min || number > max)
                 {
                     isValid = false;
-                    Console.WriteLine($"Number must be between {min} and {max}");
+                    Console.WriteLine($" Number must be between {min} and {max}");
                 }
                 else isValid = true;
 
@@ -123,9 +123,9 @@ namespace ConsoleAppProject.Helpers
         {
             Console.ForegroundColor = ConsoleColor.Green;
 
-            Console.WriteLine("-------------------------------------------");
-            Console.WriteLine($"{heading} | Author: Isabelle Thorpe");
-            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine(" \n  -------------------------------------------");
+            Console.WriteLine($" {heading} | Author: Isabelle Thorpe");
+            Console.WriteLine("  -------------------------------------------");
             Console.WriteLine("");
 
             Console.ForegroundColor = ConsoleColor.Yellow;

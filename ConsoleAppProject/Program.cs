@@ -36,7 +36,7 @@ namespace ConsoleAppProject
             choice = ConsoleHelper.SelectChoice(choices);
 
             if (choice == 1)
-            {
+            { 
                 DistanceConverter converter = new DistanceConverter();
                 converter.Run();
             }
