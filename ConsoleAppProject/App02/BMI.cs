@@ -4,14 +4,16 @@ using ConsoleAppProject.Helpers;
 namespace ConsoleAppProject.App02
 {
     /// <summary>
-    /// Please describe the main features of this App
+    /// This application calculates the users BMI through
+    /// inputting units either imperial or metric, displaying
+    /// their BMI Index and BMI Status and a message explaining
+    /// to BAME groups their extra risks.
     /// </summary>
     /// <author>
-    /// Student Name version 0.1
+    /// Isabelle Thorpe - Version 0.3
     /// </author>
     public class BMI
     {
-
         public const string IMPERIAL = "Imperial";
         public const string METRIC = "Metric";
 
@@ -25,19 +27,34 @@ namespace ConsoleAppProject.App02
         public double BMI_Index { get; set; }
         public BMI_Status Status { get; set; }
 
-        private double height;
-        private double weight;
+        public double Height { get; set; }
+        public double Weight { get; set; }
 
 
         private string unitChoice;
 
-
+        /// <summary>
+        /// This method will run the program, outputting a
+        /// heading, closing the program if the user does
+        /// not wish to run it again
+        /// </summary>
         public void Run()
         {
-            ConsoleHelper.OutputHeading("BMI Calculator");
-            ConvertBMI();
-        }
+            bool repeat = true;
+            while (repeat)
+            {
+                ConsoleHelper.OutputHeading("BMI Calculator");
+                ConvertBMI();
+                repeat = ConsoleHelper.WantToRepeat();
+            }
+    }
 
+        /// <summary>
+        /// This method offers the user the unit choices
+        /// imeperial or metric. Whichever is chosen,
+        /// it will calculate the result from the user
+        /// input and output the BMI Index result.
+        /// </summary>
         public void ConvertBMI()
         {
             Console.ForegroundColor = ConsoleColor.White;
@@ -54,7 +71,6 @@ namespace ConsoleAppProject.App02
             
             Console.WriteLine($"\n You have selected {unitChoice}! ");
 
-
             if (unitChoice == IMPERIAL)
             {
                 InputImperial();
@@ -70,52 +86,69 @@ namespace ConsoleAppProject.App02
             string input = Console.ReadLine();
         }
 
+        /// <summary>
+        /// Prompts user to enter height in feet and inches
+        /// and their weight in stones and pounds. Converts
+        /// feet to inches and stones to pounds to calculate
+        /// single unit results for both height and weight
+        /// </summary>
         private void InputImperial()
         {
-            ConsoleHelper.OutputYellow($"\n Enter your height" +
+            Console.WriteLine($"\n Enter your height" +
                             " to the nearest feet & inches");
 
-            height = ConsoleHelper.InputNumber($"\n Enter your height in feet > ");
+            Height = ConsoleHelper.InputNumberDouble($"\n Enter your height in feet > ");
             int inches = (int)ConsoleHelper.InputNumber($" Enter your height in inches > ", 0, INCHES_IN_FEET);
-            height = height * INCHES_IN_FEET + inches;
+            Height = Height * INCHES_IN_FEET + inches;
 
-            ConsoleHelper.OutputYellow($"\n Enter your weight" +
+            Console.WriteLine($"\n Enter your weight" +
             " to the nearest stones & pounds");
 
-            weight = ConsoleHelper.InputNumber($"\n Enter your weight in stone > ");
+            Weight = ConsoleHelper.InputNumberDouble($"\n Enter your weight in stone > ");
             int pounds = (int)ConsoleHelper.InputNumber($" Enter your weight in pounds > ", 0, POUNDS_IN_STONE);
-            weight = weight * POUNDS_IN_STONE + pounds;
-        }
-
-        private void InputMetric()
-        {
-            ConsoleHelper.OutputYellow($"\n Enter your height " +
-                "in metres");
-
-            height = ConsoleHelper.InputNumber($"\n Enter your height in metres > ");
-
-            ConsoleHelper.OutputYellow($"\n Enter your weight " +
-            "to the nearest kilogram");
-
-            weight = ConsoleHelper.InputNumber($"\n Enter your weight in kilograms > ");
+            Weight = Weight * POUNDS_IN_STONE + pounds;
         }
 
         /// <summary>
+        /// Prompts user to enter height in metres and weight
+        /// in kilograms
+        /// </summary>
+        private void InputMetric()
+        {
+            Console.WriteLine($"\n Enter your height " +
+                "in metres");
+
+            Height = ConsoleHelper.InputNumberDouble($"\n Enter your height in metres > ");
+
+            Console.WriteLine($"\n Enter your weight " +
+            "to the nearest kilogram");
+
+            Weight = ConsoleHelper.InputNumberDouble($"\n Enter your weight in kilograms > ");
+        }
+
+        /// <summary>
+        /// Calculates BMI using following sum for imperial units
         /// BMI = (weight in pounds) x 703 / (height in inches)2
         /// </summary>
         private void CalculateImperial()
         {
-            BMI_Index = (weight * IMPERIAL_FACTOR) / (height * height);
+            BMI_Index = (Weight * IMPERIAL_FACTOR) / (Height * Height);
         }
 
         /// <summary>
+        /// Calculates BMI using following sum for metric units
         /// BMI = (weight in kg) / (height in metres)2
         /// </summary>
         private void CalculateMetric()
         {
-            BMI_Index = weight / (height * height);
+            BMI_Index = Weight / (Height * Height);
         }
 
+        /// <summary>
+        /// This method uses more and less thans to classify the BMI
+        /// status through the BMI Index and the BMI_Status Enumeration
+        /// class
+        /// </summary>
         private void OutputBMI_Index()
         {
             if (BMI_Index < 18.50)
@@ -146,10 +179,14 @@ namespace ConsoleAppProject.App02
             ConsoleHelper.OutputYellow($"\n Your BMI index is {BMI_Index: 0.00}");
             ConsoleHelper.OutputYellow($"Your BMI status is {Status}");
 
-            Console.WriteLine("\n If you are Black, Asian, or other minority " +
-                "ethnic groups, you have a higher risk");
-            Console.WriteLine("\n Adults 23.0 or more are at increased risk " +
-                "\n Adults 27.5 or more are at high risk");
+            ConsoleHelper.OutputRed("\n If you are Black, Asian, or other minority " +
+                "\n ethnic groups, you have a higher risk have a " +
+                "\n higher risk of developing some long-term " +
+                "\n conditions, such as type 2 diabetes. " +
+                "\n These adults with a BMI of:");
+
+            ConsoleHelper.OutputYellow("\n 23.0 or more are at increased risk " +
+                "\n 27.5 or more are at high risk");
         }
 
         /// <summary>

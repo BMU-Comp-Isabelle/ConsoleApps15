@@ -34,7 +34,7 @@ namespace ConsoleAppProject.App01
 
         /// <summary>
         /// This method will run the program, outputting a heading
-        /// and closing the promgram if the user does not wish to
+        /// and closing the program if the user does not wish to
         /// chose to convert another distance
         /// </summary>
         public void Run()
@@ -44,7 +44,7 @@ namespace ConsoleAppProject.App01
             {
                 ConsoleHelper.OutputHeading(" Distance Converter");
                 ConvertDistance();
-                repeat = WantToRepeat();
+                repeat = ConsoleHelper.WantToRepeat();
             }
         }
 
@@ -73,7 +73,7 @@ namespace ConsoleAppProject.App01
             ToUnit = choices[choice - 1];
             Console.WriteLine($"\n You have selected {ToUnit}! ");
 
-            FromDistance = ConsoleHelper.InputNumber($"\n Please enter the number of" +
+            FromDistance = ConsoleHelper.InputNumberDouble($"\n Please enter the number of" +
                 $" {FromUnit} you wish to convert to {ToUnit} > ");
 
             ConsoleHelper.OutputTitle($"\n Converting {FromUnit} to {ToUnit} ");
@@ -151,41 +151,6 @@ namespace ConsoleAppProject.App01
         {
             Console.WriteLine($"\n {FromDistance} {FromUnit}" +
                 $" is {ToDistance} {ToUnit}!");
-        }
-
-        /// <summary>
-        /// This method will give the user the option to carry
-        /// out another calculation by saying yes or no
-        /// </summary>
-        private bool WantToRepeat()
-        {
-            bool repeat = true;
-            while (repeat)
-            {
-                Console.WriteLine("\n Would you like to carry out"
-                    + " another calculation? yes/no? > ");
-                string choice = Console.ReadLine();
-
-                if (choice.ToLower().Contains("y"))
-                {
-                    Console.WriteLine(" You have selected yes");
-                    repeat = false;
-                    return true;
-                }
-
-                else if (choice.ToLower().Contains("n"))
-                {
-                    Console.WriteLine(" You have selected no");
-                    repeat = false;
-                    return false;
-                }
-
-                else
-                {
-                    Console.WriteLine(" Error: invalid input. Please try again");
-                }
-            }
-            return false;
 
         }
 

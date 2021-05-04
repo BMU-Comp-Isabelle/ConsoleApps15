@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>aspnet-WebApp-8E7F6DC4-03CA-4ABE-AA32-F88A43F69AC5</UserSecretsId>
+    <UserSecretsId>aspnet-WebApplications-F6BB37C4-4AF7-4BE8-A909-27F4C2473048</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,4 +17,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ConsoleAppProject\ConsoleAppProject.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

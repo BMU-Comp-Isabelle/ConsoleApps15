@@ -5,20 +5,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using WebApp.Models;
+using WebApplications.Models;
 
-namespace WebApp.Controllers
+namespace WebApplications.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public IActionResult Index()
         {
-            _logger = logger;
+            return View();
         }
 
-        public IActionResult Index()
+        public IActionResult DistanceConverter()
+        {
+            return View();
+        }
+
+        public IActionResult BMI_Calculator()
         {
             return View();
         }

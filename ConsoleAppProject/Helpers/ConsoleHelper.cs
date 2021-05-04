@@ -41,7 +41,6 @@ namespace ConsoleAppProject.Helpers
         /// </summary>
         private static void DisplayChoices(string[] choices)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
             int choiceNo = 0;
 
             foreach (string choice in choices)
@@ -57,9 +56,8 @@ namespace ConsoleAppProject.Helpers
         /// will return any number as a double.  Any exception
         /// will generate an error message.
         /// </summary>
-        public static double InputNumber(string prompt)
+        public static double InputNumberDouble(string prompt)
         {
-            Console.ForegroundColor = ConsoleColor.White;
             double number = 0;
             bool isValid;
 
@@ -94,13 +92,13 @@ namespace ConsoleAppProject.Helpers
         /// The number returned can be cast as an (int/decimal)
         /// </summary>
         public static double InputNumber(string prompt, double min, double max)
-        { 
+        {
             bool isValid;
             double number;
 
             do
             {
-                number = InputNumber(prompt);
+                number = InputNumberDouble(prompt);
 
                 if (number < min || number > max)
                 {
@@ -133,11 +131,19 @@ namespace ConsoleAppProject.Helpers
             Console.ForegroundColor = ConsoleColor.Yellow;
         }
 
+        
         public static void OutputYellow(string line)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($" {line}");
         }
+
+        public static void OutputRed(string line)
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine($" {line}");
+        }
+
 
         /// <summary>
         /// This method will display a green title underlined
@@ -157,6 +163,42 @@ namespace ConsoleAppProject.Helpers
 
             Console.WriteLine("\n");
             Console.ResetColor();
+        }
+
+        /// <summary>
+        /// This method will give the user the option to carry
+        /// out another calculation by saying yes or no
+        /// </summary>
+        public static bool WantToRepeat()
+        {
+            bool repeat = true;
+            while (repeat)
+            {
+                Console.WriteLine("\n Would you like to carry out"
+                    + " another calculation? yes/no? > ");
+                string choice = Console.ReadLine();
+
+                if (choice.ToLower().Contains("y"))
+                {
+                    Console.WriteLine(" You have selected yes");
+                    repeat = false;
+                    return true;
+                }
+
+                else if (choice.ToLower().Contains("n"))
+                {
+                    Console.WriteLine(" You have selected no");
+                    repeat = false;
+                    return false;
+                }
+
+                else
+                {
+                    Console.WriteLine(" Error: invalid input. Please try again");
+                }
+            }
+            return false;
+
         }
     }
 }
