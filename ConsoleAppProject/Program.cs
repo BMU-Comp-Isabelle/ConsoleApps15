@@ -42,7 +42,7 @@ namespace ConsoleAppProject
             }
             else if (choice == 2)
             {
-                BMI calculator = new BMI();
+                BMI_Calculator calculator = new BMI_Calculator();
                 calculator.Run();
             }
             

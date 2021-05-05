@@ -24,7 +24,7 @@ namespace WebApplications.Controllers
         }
 
         [HttpPost]
-        public IActionResult BMI(BMI bmi)
+        public IActionResult BMI(BMI_Calculator bmi)
         {
             return View();
         }

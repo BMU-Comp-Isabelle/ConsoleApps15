@@ -12,7 +12,7 @@ namespace ConsoleAppProject.App02
     /// <author>
     /// Isabelle Thorpe - Version 0.3
     /// </author>
-    public class BMI
+    public class BMI_Calculator
     {
         public const string IMPERIAL = "Imperial";
         public const string METRIC = "Metric";
