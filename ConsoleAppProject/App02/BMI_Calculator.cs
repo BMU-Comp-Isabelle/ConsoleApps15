@@ -47,7 +47,7 @@ namespace ConsoleAppProject.App02
                 ConvertBMI();
                 repeat = ConsoleHelper.WantToRepeat();
             }
-    }
+        }
 
         /// <summary>
         /// This method offers the user the unit choices
@@ -130,7 +130,7 @@ namespace ConsoleAppProject.App02
         /// Calculates BMI using following sum for imperial units
         /// BMI = (weight in pounds) x 703 / (height in inches)2
         /// </summary>
-        private void CalculateImperial()
+        public void CalculateImperial()
         {
             BMI_Index = (Weight * IMPERIAL_FACTOR) / (Height * Height);
         }
@@ -139,7 +139,7 @@ namespace ConsoleAppProject.App02
         /// Calculates BMI using following sum for metric units
         /// BMI = (weight in kg) / (height in metres)2
         /// </summary>
-        private void CalculateMetric()
+        public void CalculateMetric()
         {
             BMI_Index = Weight / (Height * Height);
         }
