@@ -15,8 +15,6 @@ namespace ConsoleApp.tests
             10, 20, 30, 40, 50, 60, 70, 80, 90, 100
         };
 
-        private int[] testMarks;
-
         [TestMethod]
         public void TestConvert0ToGradeF()
         {
@@ -150,7 +148,7 @@ namespace ConsoleApp.tests
         [TestMethod]
         public void TestCalculateMean()
         {
-            converter.Marks = testMarks;
+            converter.Marks = StatsMarks;
             double expectedMean = 55.0;
             converter.CalculateStats();
 
@@ -175,7 +173,7 @@ namespace ConsoleApp.tests
         public void TestGradeProfile()
         {
             // Arrange
-            converter.Marks = testMarks;
+            converter.Marks = StatsMarks;
   
             // Act
             converter.CalculateGradeProfile();

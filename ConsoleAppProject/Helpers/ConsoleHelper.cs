@@ -56,7 +56,7 @@ namespace ConsoleAppProject.Helpers
         /// will return any number as a double.  Any exception
         /// will generate an error message.
         /// </summary>
-        public static double InputNumberDouble(string prompt)
+        public static double InputNumber(string prompt)
         {
             double number = 0;
             bool isValid;
@@ -98,7 +98,7 @@ namespace ConsoleAppProject.Helpers
 
             do
             {
-                number = InputNumberDouble(prompt);
+                number = InputNumber(prompt);
 
                 if (number < min || number > max)
                 {

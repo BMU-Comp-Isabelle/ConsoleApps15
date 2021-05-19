@@ -97,14 +97,14 @@ namespace ConsoleAppProject.App02
             Console.WriteLine($"\n Enter your height" +
                             " to the nearest feet & inches");
 
-            Height = ConsoleHelper.InputNumberDouble($"\n Enter your height in feet > ");
+            Height = ConsoleHelper.InputNumber($"\n Enter your height in feet > ");
             int inches = (int)ConsoleHelper.InputNumber($" Enter your height in inches > ", 0, INCHES_IN_FEET);
             Height = Height * INCHES_IN_FEET + inches;
 
             Console.WriteLine($"\n Enter your weight" +
             " to the nearest stones & pounds");
 
-            Weight = ConsoleHelper.InputNumberDouble($"\n Enter your weight in stone > ");
+            Weight = ConsoleHelper.InputNumber($"\n Enter your weight in stone > ");
             int pounds = (int)ConsoleHelper.InputNumber($" Enter your weight in pounds > ", 0, POUNDS_IN_STONE);
             Weight = Weight * POUNDS_IN_STONE + pounds;
         }
@@ -118,12 +118,12 @@ namespace ConsoleAppProject.App02
             Console.WriteLine($"\n Enter your height " +
                 "in metres");
 
-            Height = ConsoleHelper.InputNumberDouble($"\n Enter your height in metres > ");
+            Height = ConsoleHelper.InputNumber($"\n Enter your height in metres > ");
 
             Console.WriteLine($"\n Enter your weight " +
             "to the nearest kilogram");
 
-            Weight = ConsoleHelper.InputNumberDouble($"\n Enter your weight in kilograms > ");
+            Weight = ConsoleHelper.InputNumber($"\n Enter your weight in kilograms > ");
         }
 
         /// <summary>

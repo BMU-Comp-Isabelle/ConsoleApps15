@@ -34,6 +34,11 @@ namespace ConsoleAppProject.App03
         public int Minimum { get; set; }
         public int Maximum { get; set; }
 
+        /// <summary>
+        /// This method will run the program, outputting a
+        /// heading, closing the program if the user does
+        /// not wish to run it again
+        /// </summary>
         public void Run()
         {
             bool repeat = true;
@@ -45,6 +50,12 @@ namespace ConsoleAppProject.App03
             }
         }
 
+        /// <summary>
+        /// This method holds the names of the students. It
+        /// runs the methods to input the marks, output the
+        /// marks, calculate the stats, and calculate the
+        /// grade profile, of each student
+        /// </summary>
         public StudentGrades()
         {
             Students = new string[]
@@ -56,8 +67,12 @@ namespace ConsoleAppProject.App03
 
             GradeProfile = new int[(int)Grades.A + 1];
             Marks = new int[Students.Length];
-        }
 
+            InputMarks();
+            OutputMarks();
+            CalculateStats();
+            CalculateGradeProfile();
+        }
 
         /// <summary>
         /// This method allows the user to input a mark
@@ -66,7 +81,14 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public void InputMarks()
         {
-            throw new NotImplementedException();
+            ConsoleHelper.OutputTitle(" Entering Student Marks");
+            Console.WriteLine(" Please enter a percetage mark for" +
+                "the following students:");
+
+            for (int index = 0; index < Students.Length; index ++)
+            {
+                Marks[index] = (int)ConsoleHelper.InputNumber($" {Students[index]} > ");
+            }
         }
 
         /// <summary>
@@ -75,7 +97,15 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public void OutputMarks()
         {
-            throw new NotImplementedException();
+            ConsoleHelper.OutputTitle(" Student Marks");
+
+            for (int index = 0; index < Students.Length; index++)
+            {
+                Grades grade = ConvertToGrade(Marks[index]);
+                string name = EnumHelper<Grades>.GetName(grade);
+
+                Console.WriteLine($" {Students[index]} {Marks[index]}% - Grade {grade} | {name}");
+            }
         }
 
         /// <summary>
@@ -100,7 +130,7 @@ namespace ConsoleAppProject.App03
             {
                 return Grades.B;
             }
-            else if (mark >= LowestGradeA && mark < HighestMark)
+            else if (mark >= LowestGradeA && mark <= HighestMark)
             {
                 return Grades.A;
             }
@@ -127,10 +157,28 @@ namespace ConsoleAppProject.App03
                 if (mark > Maximum) Maximum = mark;
                 if (mark < Minimum) Minimum = mark;
             }
-
             Mean = total / Marks.Length;
+            OutputStats();
         }
 
+        /// <summary>
+        /// This method outputs the statistics of all the
+        /// students to give the tutor the minimum, mean
+        /// and maximum of the whole group
+        /// </summary>
+        private void OutputStats()
+        {
+            ConsoleHelper.OutputTitle(" Student Marks Statistics");
+            Console.WriteLine($" No. of students marked = {Marks.Length}");
+            Console.WriteLine($" Minimum mark = {Minimum}");
+            Console.WriteLine($" Mean mark = {Mean}");
+            Console.WriteLine($" Maximum mark = {Maximum}");
+        }
+
+        /// <summary>
+        /// This method calculates a grade profile
+        /// (the percentage of students obtaining each grade)
+        /// </summary>
         public void CalculateGradeProfile()
         {
             for(int i = 0; i < GradeProfile.Length; i++)
@@ -147,50 +195,24 @@ namespace ConsoleAppProject.App03
             OutputGradeProfile();
         }
 
+        /// <summary>
+        /// This method displays the Grade Profile
+        /// (the percentage of students obtaining each grade)
+        /// </summary>
         private void OutputGradeProfile()
         {
             Grades grade = Grades.None;
-            Console.WriteLine();
+            ConsoleHelper.OutputYellow("\n Number of students that achieved " +
+                             "the following grades");
 
-            foreach(int count in GradeProfile)
+            foreach (int count in GradeProfile)
             {
                 int percentage = count * 100 / Marks.Length;
-                Console.WriteLine($" Grade {grade} {percentage}% Count {count}");
+                Console.WriteLine($" \n Grade {grade} - {percentage}% | Count {count}");
                 grade++;
             }
 
             Console.WriteLine();
         }
-
-
-
-
-
-
-
-        public void TestGradesEnumeration()
-        {
-            Grades grade = Grades.C;
-
-            Console.WriteLine($"Grade = {grade}");
-            Console.WriteLine($"Grade No = {(int)grade}");
-
-            Console.WriteLine("\nDiscovered by Andrei!\n");
-            var gradeName = grade.GetAttribute<DisplayAttribute>().Name;
-            Console.WriteLine($"Grade Name = {gradeName}");
-
-            var gradeDescription = grade.GetAttribute<DescriptionAttribute>().Description;
-            Console.WriteLine($"Grade Description = {gradeDescription}");
-
-            string testDescription = EnumHelper<Grades>.GetDescription(grade);
-            string testName = EnumHelper<Grades>.GetName(grade);
-
-            Console.WriteLine();
-            Console.WriteLine("Discovered by Derek Using EnumHelper\n");
-            Console.WriteLine($"Name = {testName}");
-            Console.WriteLine($"Description = {testDescription}");
-
-        }
-
     }
 }

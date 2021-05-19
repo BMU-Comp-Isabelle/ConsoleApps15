@@ -73,7 +73,7 @@ namespace ConsoleAppProject.App01
             ToUnit = choices[choice - 1];
             Console.WriteLine($"\n You have selected {ToUnit}! ");
 
-            FromDistance = ConsoleHelper.InputNumberDouble($"\n Please enter the number of" +
+            FromDistance = ConsoleHelper.InputNumber($"\n Please enter the number of" +
                 $" {FromUnit} you wish to convert to {ToUnit} > ");
 
             ConsoleHelper.OutputTitle($"\n Converting {FromUnit} to {ToUnit} ");
