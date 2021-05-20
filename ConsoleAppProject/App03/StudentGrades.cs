@@ -82,12 +82,12 @@ namespace ConsoleAppProject.App03
         public void InputMarks()
         {
             ConsoleHelper.OutputTitle(" Entering Student Marks");
-            Console.WriteLine(" Please enter a percetage mark for" +
+            Console.WriteLine(" Please enter a percentage mark for " +
                 "the following students:");
 
             for (int index = 0; index < Students.Length; index ++)
             {
-                Marks[index] = (int)ConsoleHelper.InputNumber($" {Students[index]} > ");
+                Marks[index] = (int)ConsoleHelper.InputNumber($" {Students[index]} > ", 0, 100);
             }
         }
 
