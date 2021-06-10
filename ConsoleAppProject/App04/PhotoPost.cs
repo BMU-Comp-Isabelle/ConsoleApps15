@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-
 
 namespace ConsoleAppProject.App04
 {
@@ -13,6 +11,7 @@ namespace ConsoleAppProject.App04
     /// Isabelle Thorpe
     /// @version 0.1
     /// </author>
+    
     public class PhotoPost : Post
     {
         // the name of the image file
@@ -38,6 +37,14 @@ namespace ConsoleAppProject.App04
         {
             this.Filename = filename;
             this.Caption = caption;
+        }
+
+        public override void Display()
+        {
+            Console.WriteLine($"    Filename: [{Filename}]");
+            Console.WriteLine($"    Caption: [{Caption}]");
+
+            base.Display();
         }
     }
 }

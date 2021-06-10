@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-
 namespace ConsoleAppProject.App04
 {
     ///<summary>
@@ -12,6 +10,7 @@ namespace ConsoleAppProject.App04
     /// Isabelle Thorpe
     /// version 0.1
     /// </author>
+    
     public class MessagePost : Post
     {
 
@@ -31,6 +30,16 @@ namespace ConsoleAppProject.App04
         public MessagePost(String author, String text) : base(author)
         {
             Message = text;
+        }
+
+        /// <summary>
+        /// Displays message information
+        /// </summary>
+        public override void Display()
+        {
+            Console.WriteLine($"    Message: {Message}");
+
+            base.Display();
         }
     }
 }

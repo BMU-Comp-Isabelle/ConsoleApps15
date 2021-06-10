@@ -2,19 +2,48 @@
 using System.Collections.Generic;
 namespace ConsoleAppProject.App04
 {
+    ///<summary>
+    /// This class is the base of both MessagePost
+    /// and PhotoPost as it contains functions used
+    /// needed in both of these classes. It has the
+    /// ability to Post, count the post number, time
+    /// the post, like, unlike, add comment and display
+    /// the post.
+    /// </summary>
+    /// <author>
+    /// Isabelle Thorpe
+    /// version 0.1
+    /// </author>
+    
     public class Post
     {
+        // number of the post
+        public static int Count;
+
+        // post id
+        public int PostID { get; set; }
+
+        // like
         private int likes;
 
+        // comment
         private readonly List<String> comments;
 
         // username of the post's author
         public String Username { get; }
 
+        // date and time of post
         public DateTime Timestamp { get; }
 
+
+        /// <summary>
+        /// The creator of a post
+        /// </summary>
         public Post(string author)
         {
+            Count++;
+            PostID = Count;
+
             this.Username = author;
             Timestamp = DateTime.Now;
 
@@ -55,12 +84,13 @@ namespace ConsoleAppProject.App04
         ///<summary>
         /// Display the details of this post.
         /// 
-        /// (Currently: Print to the text terminal. This is simulating display 
-        /// in a web browser for now.)
+        /// (Currently: Print to the text terminal. This is
+        /// simulating display a web browser for now.)
         ///</summary>
-        public void Display()
+        public virtual void Display()
         {
             Console.WriteLine();
+            Console.WriteLine($"    Post ID {PostID}");
             Console.WriteLine($"    Author: {Username}");
             Console.WriteLine($"    Time Elpased: {FormatElapsedTime(Timestamp)}");
             Console.WriteLine();
@@ -105,11 +135,11 @@ namespace ConsoleAppProject.App04
 
             if (minutes > 0)
             {
-                return minutes + " minutes ago";
+                return minutes + " minute(s) ago";
             }
             else
             {
-                return seconds + " seconds ago";
+                return seconds + " second(s) ago";
             }
         }
     }

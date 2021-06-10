@@ -1,6 +1,7 @@
 ﻿using ConsoleAppProject.App01;
 using ConsoleAppProject.App02;
 using ConsoleAppProject.App03;
+using ConsoleAppProject.App04;
 using ConsoleAppProject.Helpers;
 using System;
 
@@ -15,6 +16,7 @@ namespace ConsoleAppProject
     /// This Project has been modified by:
     /// Isabelle Thorpe 14/04/2020
     /// </summary>
+    
     public static class Program
     {
         private static int choice;
@@ -31,7 +33,8 @@ namespace ConsoleAppProject
             {
                 "Distance Coverter",
                 "BMI Calculator",
-                "Student Grades"
+                "Student Grades",
+                "Network App"
             };
 
             ConsoleHelper.OutputTitle("Please select the application you wish to use ");
@@ -52,7 +55,12 @@ namespace ConsoleAppProject
                 StudentGrades studentGrades = new StudentGrades();
                 studentGrades.Run();
             }
-            
+            else if (choice == 4)
+            {
+                NetworkApp network = new NetworkApp();
+                network.Run();
+            }
+
         }
     }
 }
